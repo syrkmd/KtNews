@@ -3,6 +3,7 @@ package com.yvl.news.data.mapper
 import com.yvl.news.data.local.ArticleDbModel
 import com.yvl.news.data.remote.NewsResponseDto
 import com.yvl.news.domain.entity.Article
+import com.yvl.news.domain.entity.Interval
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -18,6 +19,10 @@ fun NewsResponseDto.toDbModels(topic: String): List<ArticleDbModel> {
             publishedAt = it.publishedAt.toTimestamp()
         )
     }
+}
+
+fun Int.toInterval(): Interval {
+    return Interval.entries.first { it.minutes == this }
 }
 
 fun List<ArticleDbModel>.toEntities(): List<Article> {

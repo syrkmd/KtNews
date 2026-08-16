@@ -7,6 +7,7 @@ import com.yvl.news.data.local.NewsDao
 import com.yvl.news.data.local.NewsDataBase
 import com.yvl.news.data.remote.NewsApiService
 import com.yvl.news.data.repository.NewsRepositoryImpl
+import com.yvl.news.data.repository.SettingsRepositoryImpl
 import com.yvl.news.domain.repository.NewsRepository
 import dagger.Binds
 import dagger.Module
@@ -30,7 +31,13 @@ interface DataModel {
     @Binds
     fun bindNewsRepository(
         impl: NewsRepositoryImpl
-    ) : NewsRepository
+    ): NewsRepository
+
+    @Singleton
+    @Binds
+    fun bindSettingsRepository(
+        impl: SettingsRepositoryImpl
+    ): SettingsRepositoryImpl
 
     companion object {
 
