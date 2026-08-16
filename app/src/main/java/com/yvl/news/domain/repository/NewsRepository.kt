@@ -1,6 +1,7 @@
 package com.yvl.news.domain.repository
 
 import com.yvl.news.domain.entity.Article
+import com.yvl.news.domain.entity.RefreshConfig
 import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
@@ -18,4 +19,6 @@ interface NewsRepository {
     fun getArticlesByTopics(topics: List<String>): Flow<List<Article>>
 
     suspend fun clearAllArticles(topics: List<String>)
+
+    fun startBackgroundRefresh(refreshConfig: RefreshConfig)
 }
