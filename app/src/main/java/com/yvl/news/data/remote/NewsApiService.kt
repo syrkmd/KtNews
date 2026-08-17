@@ -9,5 +9,6 @@ interface NewsApiService {
     suspend fun loadArticles(
         @Query("q") topic: String,
         @Query("pageSize") pageSize: Int = 25,
+        @Query("language") language: String
     ): NewsResponseDto
 }

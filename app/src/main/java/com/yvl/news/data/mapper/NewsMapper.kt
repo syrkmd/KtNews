@@ -4,6 +4,7 @@ import com.yvl.news.data.local.ArticleDbModel
 import com.yvl.news.data.remote.NewsResponseDto
 import com.yvl.news.domain.entity.Article
 import com.yvl.news.domain.entity.Interval
+import com.yvl.news.domain.entity.Language
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -23,6 +24,15 @@ fun NewsResponseDto.toDbModels(topic: String): List<ArticleDbModel> {
 
 fun Int.toInterval(): Interval {
     return Interval.entries.first { it.minutes == this }
+}
+
+fun Language.toQueryParam(): String {
+    return when(this) {
+        Language.ENGLISH -> "en"
+        Language.RUSSIAN -> "ru"
+        Language.FRENCH -> "fr"
+        Language.GERMAN -> "de"
+    }
 }
 
 fun List<ArticleDbModel>.toEntities(): List<Article> {
