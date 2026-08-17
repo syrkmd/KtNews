@@ -1,5 +1,8 @@
 package com.yvl.news.presentation.navigation
 
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -9,6 +12,12 @@ import com.yvl.news.presentation.screen.subscriptions.SubscriptionsScreen
 @Composable
 fun NavGraph() {
     val navController = rememberNavController()
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = {
+
+        }
+    )
     NavHost(
         navController = navController,
         startDestination = Screen.Subscription.route
@@ -16,7 +25,9 @@ fun NavGraph() {
         composable(Screen.Subscription.route) {
             SubscriptionsScreen(
                 onNavigateToSetting = {
-                    navController.navigate(Screen.Settings.route)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        permissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                    }
                 }
             )
         }

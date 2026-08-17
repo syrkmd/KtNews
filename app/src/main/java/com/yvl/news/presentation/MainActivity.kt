@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.yvl.news.presentation.navigation.NavGraph
-import com.yvl.news.presentation.screen.subscriptions.SubscriptionsScreen
 import com.yvl.news.presentation.ui.theme.NewsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
